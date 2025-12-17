@@ -10,10 +10,8 @@ set -e
 
 # Configuration
 DOWNLOAD_BASE="https://s3.eu-north-1.amazonaws.com/flowdeck.public/releases/cli"
-DEFAULT_INSTALL_DIR="/usr/local/bin"
-FALLBACK_INSTALL_DIR="$HOME/.local/bin"
+DEFAULT_INSTALL_DIR="$HOME/.local/bin"
 BINARY_NAME="flowdeck"
-NEEDS_SUDO=false
 
 # Colors (disabled if not a terminal)
 if [ -t 1 ]; then
@@ -99,41 +97,9 @@ determine_install_dir() {
     # If user specified a directory via env var, use that
     if [ -n "$FLOWDECK_INSTALL_DIR" ]; then
         INSTALL_DIR="$FLOWDECK_INSTALL_DIR"
-        # Check if we need sudo for custom dir
-        if [ -d "$INSTALL_DIR" ] && [ ! -w "$INSTALL_DIR" ]; then
-            NEEDS_SUDO=true
-        fi
-        return
-    fi
-
-    # Check if we can write to /usr/local/bin directly
-    if [ -w "$DEFAULT_INSTALL_DIR" ]; then
+    else
         INSTALL_DIR="$DEFAULT_INSTALL_DIR"
-        return
     fi
-
-    # /usr/local/bin exists but needs sudo, or doesn't exist
-    echo ""
-    printf "${BOLD}Where would you like to install FlowDeck?${NC}\n"
-    echo ""
-    printf "  ${BOLD}1${NC}) /usr/local/bin ${DIM}(recommended, requires sudo)${NC}\n"
-    printf "  ${BOLD}2${NC}) ~/.local/bin ${DIM}(no sudo, may require PATH configuration)${NC}\n"
-    echo ""
-    printf "Choice [1]: "
-
-    read -r choice
-    choice="${choice:-1}"
-
-    case "$choice" in
-        2)
-            INSTALL_DIR="$FALLBACK_INSTALL_DIR"
-            ;;
-        *)
-            INSTALL_DIR="$DEFAULT_INSTALL_DIR"
-            NEEDS_SUDO=true
-            ;;
-    esac
-    echo ""
 }
 
 # Download the binary
@@ -165,11 +131,7 @@ install_binary() {
     # Create install directory if needed
     if [ ! -d "$INSTALL_DIR" ]; then
         info "Creating directory $INSTALL_DIR..."
-        if [ "$NEEDS_SUDO" = true ]; then
-            sudo mkdir -p "$INSTALL_DIR"
-        else
-            mkdir -p "$INSTALL_DIR"
-        fi
+        mkdir -p "$INSTALL_DIR"
     fi
 
     # Check for existing installation
@@ -182,15 +144,9 @@ install_binary() {
 
     # Install binary
     info "Installing to $INSTALL_DIR/$BINARY_NAME..."
-    if [ "$NEEDS_SUDO" = true ]; then
-        sudo cp "$DOWNLOADED_BINARY" "$INSTALL_DIR/$BINARY_NAME"
-        sudo chmod 755 "$INSTALL_DIR/$BINARY_NAME"
-        sudo xattr -d com.apple.quarantine "$INSTALL_DIR/$BINARY_NAME" 2>/dev/null || true
-    else
-        cp "$DOWNLOADED_BINARY" "$INSTALL_DIR/$BINARY_NAME"
-        chmod 755 "$INSTALL_DIR/$BINARY_NAME"
-        xattr -d com.apple.quarantine "$INSTALL_DIR/$BINARY_NAME" 2>/dev/null || true
-    fi
+    cp "$DOWNLOADED_BINARY" "$INSTALL_DIR/$BINARY_NAME"
+    chmod 755 "$INSTALL_DIR/$BINARY_NAME"
+    xattr -d com.apple.quarantine "$INSTALL_DIR/$BINARY_NAME" 2>/dev/null || true
 }
 
 # Check if install directory is in PATH
@@ -207,37 +163,33 @@ suggest_path_config() {
 
     case "$SHELL_NAME" in
         zsh)
-            RC_FILE="$HOME/.zshrc"
+            RC_FILE="~/.zshrc"
             ;;
         bash)
             if [ -f "$HOME/.bash_profile" ]; then
-                RC_FILE="$HOME/.bash_profile"
+                RC_FILE="~/.bash_profile"
             else
-                RC_FILE="$HOME/.bashrc"
+                RC_FILE="~/.bashrc"
             fi
             ;;
         fish)
-            RC_FILE="$HOME/.config/fish/config.fish"
+            RC_FILE="~/.config/fish/config.fish"
             ;;
         *)
-            RC_FILE="your shell's config file"
+            RC_FILE="your shell config"
             ;;
     esac
 
     echo ""
-    warn "$INSTALL_DIR is not in your PATH"
+    warn "~/.local/bin is not in your PATH"
     echo ""
-    echo "Add this to ${RC_FILE}:"
+    echo "Run this command to add it:"
     echo ""
     if [ "$SHELL_NAME" = "fish" ]; then
-        printf "  ${BOLD}fish_add_path %s${NC}\n" "$INSTALL_DIR"
+        printf "  ${BOLD}echo 'fish_add_path ~/.local/bin' >> %s && source %s${NC}\n" "$RC_FILE" "$RC_FILE"
     else
-        printf "  ${BOLD}export PATH=\"%s:\$PATH\"${NC}\n" "$INSTALL_DIR"
+        printf "  ${BOLD}echo 'export PATH=\"\$HOME/.local/bin:\$PATH\"' >> %s && source %s${NC}\n" "$RC_FILE" "$RC_FILE"
     fi
-    echo ""
-    echo "Then restart your terminal or run:"
-    echo ""
-    printf "  ${BOLD}source ${RC_FILE}${NC}\n"
     echo ""
 }
 

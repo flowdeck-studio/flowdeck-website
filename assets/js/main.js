@@ -340,7 +340,7 @@ signupForm.addEventListener('submit', async (e) => {
         // Show error message
         const errorMessage = document.createElement('div');
         errorMessage.className = 'signup-error-message';
-        errorMessage.textContent = 'Something went wrong. Please try again or email us at hello@getflowdeck.com';
+        errorMessage.textContent = 'Something went wrong. Please try again or email us at support@flowdeck.studio';
         signupForm.parentElement.insertBefore(errorMessage, signupForm.nextSibling);
 
         // Remove error message after 5 seconds

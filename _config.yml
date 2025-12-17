@@ -1,8 +1,8 @@
 # Site Settings
 title: "FlowDeck"
 description: "Build iOS & macOS apps with AI in VS Code and Cursor"
-url: "https://flowdeck.studio"
-baseurl: ""
+url: "https://flowdeck-studio.github.io"
+baseurl: "/flowdeck-website"
 author: "Daniel (afterxleep)"
 twitter_username: afterxleep
 
@@ -48,7 +48,6 @@ exclude:
   - .DS_Store
 
 # Site-wide variables
-checkout_url_yearly: "https://store.flowdeck.studio/buy/85ab42b5-7ba9-4e2b-beb9-a99c209ee7b4?embed=1&media=0&desc=0"
-checkout_url_monthly: "https://store.flowdeck.studio/buy/161e2999-4b3f-4769-af07-3364e3f50a09?embed=1&media=0&desc=0"
+checkout_url_yearly: "https://store.flowdeck.studio/buy/85ab42b5-7ba9-4e2b-beb9-a99c209ee7b4?checkout%5Bdiscount_code%5D=EARLY"
 docs_url: "https://docs.flowdeck.studio"
 discord_url: "https://discord.gg/VJ6nwb6Weg"

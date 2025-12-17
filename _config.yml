@@ -1,8 +1,8 @@
 # Site Settings
 title: "FlowDeck"
 description: "Build iOS & macOS apps with AI in VS Code and Cursor"
-url: "https://flowdeck-studio.github.io"
-baseurl: "/flowdeck-website"
+url: "https://test.flowdeck.studio"
+baseurl: ""
 author: "Daniel (afterxleep)"
 twitter_username: afterxleep
 

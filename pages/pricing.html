@@ -1,0 +1,149 @@
+---
+layout: default
+title: Pricing
+permalink: /pricing/
+body_class: pricing-page
+---
+
+<main class="pricing-page">
+    <!-- Pricing Hero -->
+    <section class="pricing-hero">
+        <div class="container">
+            <header class="pricing-header">
+                <h1 class="pricing-title">Simple Pricing</h1>
+                <p class="pricing-subtitle">Free extension for everyone. Paid CLI for AI-assisted workflows.</p>
+            </header>
+        </div>
+    </section>
+
+    <!-- Two Main Pricing Cards -->
+    <section class="pricing-cards-section">
+        <div class="container">
+            <div class="pricing-grid-two">
+                <!-- Free Extension -->
+                <article class="pricing-card">
+                    <div class="card-header">
+                        <h2>Extension</h2>
+                        <div class="price-display">
+                            <span class="price-amount">$0</span>
+                        </div>
+                        <p class="price-note">Free forever</p>
+                    </div>
+                    <p class="card-description">Full iOS and macOS development in Cursor and VS Code</p>
+
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Build, run, debug, test</li>
+                        <li><i class="fas fa-check"></i> Simulator management</li>
+                        <li><i class="fas fa-check"></i> Device deployment</li>
+                        <li><i class="fas fa-check"></i> SourceKit-LSP IntelliSense</li>
+                        <li><i class="fas fa-check"></i> Community Discord</li>
+                    </ul>
+
+                    <div class="card-cta">
+                        <a href="{{ site.baseurl }}/#extension-download" class="btn btn-secondary btn-large btn-block">Get the Extension</a>
+                    </div>
+                </article>
+
+                <!-- CLI - Featured -->
+                <article class="pricing-card featured">
+                    <span class="popular-badge">Early Adopter Offer</span>
+                    <div class="card-header">
+                        <h2>Agentic CLI</h2>
+
+                        <!-- Billing Toggle -->
+                        <div class="billing-toggle-inline">
+                            <span class="toggle-label" data-period="monthly">Monthly</span>
+                            <button class="toggle-switch" id="billingToggle" aria-pressed="true" aria-label="Toggle annual billing">
+                                <span class="toggle-slider"></span>
+                            </button>
+                            <span class="toggle-label" data-period="yearly">Yearly</span>
+                        </div>
+
+                        <div class="price-display">
+                            <div class="price-monthly" style="display:none;">
+                                <span class="price-amount">$9</span>
+                                <span class="price-period">/mo</span>
+                            </div>
+                            <div class="price-yearly">
+                                <span class="price-old">$8.25</span>
+                                <span class="price-amount">$6.59</span>
+                                <span class="price-period">/mo</span>
+                            </div>
+                        </div>
+                        <p class="price-note limited-offer price-yearly-only"><i class="fas fa-bolt"></i> 20% off - Early adopter offer</p>
+                    </div>
+                    <p class="card-description">Let AI build, test, debug, and iterate for you</p>
+
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Claude Code builds your apps</li>
+                        <li><i class="fas fa-check"></i> Interactive terminal mode</li>
+                        <li><i class="fas fa-check"></i> OSLog streaming</li>
+                        <li><i class="fas fa-check"></i> JSON output for CI/CD</li>
+                        <li><i class="fas fa-check"></i> Standalone. No Cursor extension required</li>
+                        <li><i class="fas fa-check"></i> Priority email support</li>
+                    </ul>
+
+                    <div class="card-cta">
+                        <a href="{{ site.checkout_url_yearly }}" class="btn btn-pro btn-large btn-block lemonsqueezy-button" id="cliPurchaseBtn">Start Free Trial</a>
+                        <p class="cta-note">7-day free trial. Cancel anytime.</p>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Business Callout -->
+            <div class="business-callout">
+                <div class="business-content">
+                    <div class="business-info">
+                        <h3>Business</h3>
+                        <p>Need FlowDeck for your team? Get Extension + CLI licenses, centralized billing, dedicated support, and custom terms.</p>
+                    </div>
+                    <a href="mailto:hello@flowdeck.studio" class="btn btn-secondary">Contact</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="pricing-faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+
+            <div class="faq-grid">
+                <article class="faq-item">
+                    <h3 class="faq-question">What's the difference?</h3>
+                    <p class="faq-answer">The Extension is for hands-on development in your editor. The CLI lets AI agents build, test, and deploy your apps for you.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3 class="faq-question">How does the free trial work?</h3>
+                    <p class="faq-answer">7 days of full CLI access. Cancel anytime. After the trial, subscribe or continue with the free extension.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3 class="faq-question">Can I switch plans?</h3>
+                    <p class="faq-answer">Yes. Switch between monthly and annual anytime. Moving to annual gives you prorated credit.</p>
+                </article>
+
+                <article class="faq-item">
+                    <h3 class="faq-question">Do I still need Xcode?</h3>
+                    <p class="faq-answer">Yes. FlowDeck uses Apple's build tools under the hood. Xcode needs to be installed, but you won't need to open it.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="pricing-cta">
+        <div class="container">
+            <div style="text-align: center;">
+                <h2>Ready to build different?</h2>
+                <p style="margin-bottom: 2rem; color: #a1a1aa;">Start with the free extension or try the CLI free for 7 days.</p>
+
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="{{ site.checkout_url_yearly }}" class="btn btn-pro btn-large lemonsqueezy-button">Start CLI Trial</a>
+                    <a href="{{ site.baseurl }}/#extension-download" class="btn btn-secondary btn-large">Get Free Extension</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

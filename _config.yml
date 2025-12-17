@@ -1,0 +1,54 @@
+# Site Settings
+title: "FlowDeck"
+description: "Build iOS & macOS apps with AI in VS Code and Cursor"
+url: "https://flowdeck.studio"
+baseurl: ""
+author: "Daniel (afterxleep)"
+twitter_username: afterxleep
+
+# Build Settings
+markdown: kramdown
+highlighter: rouge
+permalink: /blog/:year/:month/:day/:title/
+timezone: America/Los_Angeles
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Daniel"
+  - scope:
+      path: "pages"
+    values:
+      layout: "page"
+
+# Plugins
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+  - .DS_Store
+
+# Site-wide variables
+checkout_url_yearly: "https://store.flowdeck.studio/buy/85ab42b5-7ba9-4e2b-beb9-a99c209ee7b4?embed=1&media=0&desc=0"
+checkout_url_monthly: "https://store.flowdeck.studio/buy/161e2999-4b3f-4769-af07-3364e3f50a09?embed=1&media=0&desc=0"
+docs_url: "https://docs.flowdeck.studio"
+discord_url: "https://discord.gg/VJ6nwb6Weg"

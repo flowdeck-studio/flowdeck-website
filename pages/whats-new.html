@@ -1,0 +1,83 @@
+---
+layout: default
+title: What's New
+permalink: /whats-new/
+body_class: blog-main whats-new-page
+---
+
+<main class="blog-main whats-new-page">
+  <section class="whats-new-hero">
+    <div class="container">
+      <header class="whats-new-header">
+        <div class="hero-badge">What's New</div>
+        <h1 class="whats-new-title">The latest from <span class="gradient-text">FlowDeck</span></h1>
+        <p class="whats-new-subtitle">New features, improvements, and insights to help you ship faster</p>
+      </header>
+    </div>
+  </section>
+
+  <section class="blog-content">
+    <div class="container">
+      <div class="blog-grid-single">
+        <div class="blog-posts">
+          {% assign whats_new_posts = site.posts | where: "category", "whats-new" %}
+
+          {% if whats_new_posts.size > 0 %}
+          <div class="posts-grid">
+            {% for post in whats_new_posts limit: 10 %}
+            <article id="post-{{ post.id }}" class="post-card">
+              {% if post.image %}
+              <div class="post-thumbnail">
+                <a href="{{ post.url | relative_url }}">
+                  <img src="{{ post.image }}" alt="{{ post.title }}">
+                </a>
+              </div>
+              {% endif %}
+
+              <div class="post-content">
+                <div class="post-meta">
+                  <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">
+                    <i class="far fa-calendar"></i>
+                    {{ post.date | date: "%B %d, %Y" }}
+                  </time>
+                  {% if post.category %}
+                  <span class="post-category">
+                    <i class="far fa-folder"></i>
+                    {{ post.category }}
+                  </span>
+                  {% endif %}
+                </div>
+
+                <h2 class="post-title">
+                  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </h2>
+
+                <div class="post-excerpt">
+                  {{ post.excerpt }}
+                </div>
+
+                <a href="{{ post.url | relative_url }}" class="btn btn-secondary read-more">
+                  Read More <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+
+          {% else %}
+          <div class="no-posts">
+            <div class="no-posts-icon">
+              <i class="fas fa-folder-open"></i>
+            </div>
+            <h2>No updates yet</h2>
+            <p>Check back soon for product updates and new features.</p>
+            <a href="{{ site.baseurl }}/" class="btn btn-primary">
+              Back to Home
+            </a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

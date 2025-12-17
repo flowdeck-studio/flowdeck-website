@@ -1,0 +1,160 @@
+---
+layout: default
+---
+
+<main class="single-post-main">
+  <article id="post-{{ page.id }}" class="single-post-article">
+    <!-- Post Header -->
+    <header class="single-post-header">
+      <div class="container">
+        <div class="post-header-content">
+          <div class="post-meta">
+            <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">
+              <i class="far fa-calendar"></i>
+              {{ page.date | date: "%B %d, %Y" }}
+            </time>
+            {% if page.category %}
+            <span class="post-category">
+              <i class="far fa-folder"></i>
+              {{ page.category }}
+            </span>
+            {% endif %}
+            <span class="post-reading-time">
+              <i class="far fa-clock"></i>
+              {% assign words = content | number_of_words %}
+              {% assign reading_time = words | divided_by: 200 %}
+              {% if reading_time == 0 %}1{% else %}{{ reading_time }}{% endif %} min read
+            </span>
+          </div>
+
+          <h1 class="post-title">{{ page.title }}</h1>
+
+          {% if page.excerpt %}
+          <div class="post-excerpt">
+            {{ page.excerpt }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </header>
+
+    <!-- Featured Image -->
+    {% if page.image %}
+    <div class="single-post-featured-image">
+      <div class="container">
+        <img src="{{ page.image }}" alt="{{ page.title }}">
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Post Content -->
+    <div class="single-post-content">
+      <div class="container">
+        <div class="content-wrapper">
+          <div class="post-content-main">
+            {{ content }}
+
+            <!-- Post Tags -->
+            {% if page.tags %}
+            <div class="post-tags">
+              <i class="fas fa-tags"></i>
+              {% for tag in page.tags %}
+              <a href="{{ site.baseurl }}/tags/{{ tag | slugify }}">#{{ tag }}</a>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="post-sidebar">
+            <!-- Get FlowDeck CTA Widget -->
+            <div class="widget widget-cta">
+              <h3 class="widget-title">Get FlowDeck</h3>
+              <p class="cta-description">Start building iOS & macOS apps with AI.</p>
+
+              <!-- CLI CTA (Primary) -->
+              <div style="margin-bottom: 1.5rem;">
+                <div class="cta-badge" style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.3); color: #a78bfa; margin-bottom: 0.75rem;">CLI</div>
+                <a href="{{ site.checkout_url_yearly }}" class="btn btn-pro btn-block lemonsqueezy-button" style="margin-bottom: 0.5rem;">
+                  <i class="fas fa-terminal"></i>
+                  Start Free Trial
+                </a>
+                <p style="font-size: 0.75rem; color: #a1a1aa; text-align: center; margin: 0;">$79/year</p>
+              </div>
+
+              <!-- Divider -->
+              <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1.5rem 0 1rem 0; position: relative;">
+                <span style="position: absolute; top: -0.6rem; left: 50%; transform: translateX(-50%); background: #18181b; padding: 0 0.75rem; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: #71717a;">Or get the extension</span>
+              </div>
+
+              <!-- Extension Downloads -->
+              <div>
+                <div class="cta-badge" style="margin-bottom: 0.75rem;">Free Download</div>
+                <div class="cta-buttons">
+                  <a href="cursor:extension/flowdeck.flowdeck" class="btn btn-primary btn-block">
+                    <img src="{{ site.baseurl }}/assets/images/cursor.png" alt="Cursor" width="16" height="16" class="btn-icon">
+                    Add to Cursor
+                  </a>
+                  <a href="vscode:extension/flowdeck.flowdeck" class="btn btn-secondary btn-block">
+                    <img src="{{ site.baseurl }}/assets/images/code.png" alt="VS Code" width="16" height="16" class="btn-icon">
+                    Add to VS Code
+                  </a>
+                </div>
+              </div>
+
+              <!-- Features -->
+              <div class="cta-features" style="margin-top: 1.5rem;">
+                <div class="cta-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Full debugging support</span>
+                </div>
+                <div class="cta-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Swift IntelliSense</span>
+                </div>
+                <div class="cta-feature">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Fast builds</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+
+    <!-- Post Navigation -->
+    <div class="post-navigation">
+      <div class="container">
+        <div class="nav-links">
+          {% if page.previous.url %}
+          <div class="nav-previous">
+            <span class="nav-subtitle"><i class="fas fa-arrow-left"></i> Previous Post</span>
+            <a href="{{ page.previous.url }}" class="nav-title">
+              {{ page.previous.title }}
+            </a>
+          </div>
+          {% endif %}
+
+          {% if page.next.url %}
+          <div class="nav-next">
+            <span class="nav-subtitle">Next Post <i class="fas fa-arrow-right"></i></span>
+            <a href="{{ page.next.url }}" class="nav-title">
+              {{ page.next.title }}
+            </a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- Back to What's New -->
+    <div class="back-to-blog">
+      <div class="container">
+        <a href="{{ site.baseurl }}/whats-new/" class="btn btn-secondary">
+          <i class="fas fa-arrow-left"></i> Back to What's New
+        </a>
+      </div>
+    </div>
+  </article>
+</main>

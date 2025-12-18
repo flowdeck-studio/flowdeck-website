@@ -23,9 +23,6 @@ social:
     - https://github.com/flowdeck
     - https://discord.gg/VJ6nwb6Weg
 
-# Default image for social sharing
-defaults_image: /assets/images/og-image.png
-
 # Google Analytics
 google_analytics: G-6T1XG8PG61
 
@@ -53,16 +50,10 @@ defaults:
     values:
       layout: "post"
       author: "Daniel"
-      image: /assets/images/og-image.png
   - scope:
       path: "pages"
     values:
       layout: "page"
-      image: /assets/images/og-image.png
-  - scope:
-      path: ""
-    values:
-      image: /assets/images/og-image.png
 
 # Plugins
 plugins:

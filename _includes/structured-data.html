@@ -102,12 +102,8 @@
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "{{ page.url | absolute_url }}"
-  }
-  {% if page.image %},
-  "image": "{{ site.url }}{{ page.image }}"
-  {% else %},
-  "image": "{{ site.url }}/assets/images/og-image.png"
-  {% endif %}
+  }{% if page.image %},
+  "image": "{{ site.url }}{{ page.image }}"{% endif %}
 }
 </script>
 

@@ -4,12 +4,12 @@ title: "🚀 FlowDeck CLI is out!"
 date: 2025-12-17 10:00:00
 category: whats-new
 tags: [cli, release]
-excerpt: "The CLI is live. I've spent the past few months rebuilding FlowDeck's core from TypeScript to native Swift. Same capabilities, no editor dependency. FlowDeck becomes infrastructure."
+excerpt: "The CLI is live. I've spent the last month rebuilding FlowDeck's core from TypeScript to native Swift. Same capabilities, no editor dependency. FlowDeck becomes infrastructure."
 ---
 
 CLI is finally out.
 
-I've spent the past month rebuilding FlowDeck's core from TypeScript to native Swift. The VS Code extension was becoming a bottleneck. Every new feature meant fighting the extension API, wrestling with TypeScript bundling and adding workarounds. The architecture that got FlowDeck started was holding it back.
+I've spent the last month rebuilding FlowDeck's core from TypeScript to native Swift. The VS Code extension was becoming a bottleneck. Every new feature meant fighting the extension API, wrestling with TypeScript bundling and adding workarounds. The architecture that got FlowDeck started was holding it back.
 
 So I rebuilt the foundation as a standalone CLI. Same capabilities, no editor dependency. FlowDeck becomes infrastructure.
 

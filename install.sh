@@ -10,7 +10,8 @@ set -e
 
 # Configuration
 DOWNLOAD_BASE="https://s3.eu-north-1.amazonaws.com/flowdeck.public/releases/cli"
-DEFAULT_INSTALL_DIR="$HOME/.local/bin"
+DEFAULT_SHARE_DIR="$HOME/.local/share/flowdeck"
+DEFAULT_BIN_DIR="$HOME/.local/bin"
 BINARY_NAME="flowdeck"
 
 # Colors (disabled if not a terminal)
@@ -92,17 +93,18 @@ get_version() {
     fi
 }
 
-# Determine installation directory
+# Determine installation directories
 determine_install_dir() {
-    # If user specified a directory via env var, use that
+    # If user specified a directory via env var, use that for bin
     if [ -n "$FLOWDECK_INSTALL_DIR" ]; then
-        INSTALL_DIR="$FLOWDECK_INSTALL_DIR"
+        BIN_DIR="$FLOWDECK_INSTALL_DIR"
     else
-        INSTALL_DIR="$DEFAULT_INSTALL_DIR"
+        BIN_DIR="$DEFAULT_BIN_DIR"
     fi
+    SHARE_DIR="$DEFAULT_SHARE_DIR"
 }
 
-# Download the binary
+# Download and extract
 download() {
     DOWNLOAD_URL="${DOWNLOAD_BASE}/${VERSION}/flowdeck-${OS}-${ARCH}.tar.gz"
 
@@ -110,7 +112,7 @@ download() {
 
     # Create temp directory
     TMP_DIR=$(mktemp -d)
-    trap "rm -rf $TMP_DIR" EXIT
+    trap 'rm -rf "$TMP_DIR"' EXIT
 
     # Download
     HTTP_CODE=$(curl -sSL -w "%{http_code}" "$DOWNLOAD_URL" -o "$TMP_DIR/flowdeck.tar.gz" 2>/dev/null || echo "000")
@@ -122,26 +124,46 @@ download() {
     # Extract
     info "Extracting..."
     tar -xzf "$TMP_DIR/flowdeck.tar.gz" -C "$TMP_DIR"
-
-    DOWNLOADED_BINARY="$TMP_DIR/$BINARY_NAME"
 }
 
-# Install the binary
+# Install binary and resources to share, symlink to bin
 install_binary() {
-    # Create install directory if needed (silently)
-    mkdir -p "$INSTALL_DIR"
-
-    # Install binary
     info "Installing..."
-    cp "$DOWNLOADED_BINARY" "$INSTALL_DIR/$BINARY_NAME"
-    chmod 755 "$INSTALL_DIR/$BINARY_NAME"
-    xattr -d com.apple.quarantine "$INSTALL_DIR/$BINARY_NAME" 2>/dev/null || true
+
+    # Create directories
+    mkdir -p "$SHARE_DIR"
+    mkdir -p "$BIN_DIR"
+
+    # Clean up old layouts
+    rm -rf "$BIN_DIR/flowdeck-cli_FlowDeckCore.bundle"
+    rm -rf "$SHARE_DIR/flowdeck-cli_FlowDeckCore.bundle"
+    rm -f "$BIN_DIR/$BINARY_NAME"
+
+    # Install binary to share directory
+    cp "$TMP_DIR/$BINARY_NAME" "$SHARE_DIR/$BINARY_NAME"
+    chmod 755 "$SHARE_DIR/$BINARY_NAME"
+    xattr -d com.apple.quarantine "$SHARE_DIR/$BINARY_NAME" 2>/dev/null || true
+
+    # Install resources
+    mkdir -p "$SHARE_DIR/resources"
+    if [ -f "$TMP_DIR/resources/SKILL.md" ]; then
+        cp "$TMP_DIR/resources/SKILL.md" "$SHARE_DIR/resources/"
+    fi
+    if [ -f "$TMP_DIR/resources/flowdeck-guard.sh" ]; then
+        cp "$TMP_DIR/resources/flowdeck-guard.sh" "$SHARE_DIR/resources/"
+        chmod 755 "$SHARE_DIR/resources/flowdeck-guard.sh"
+    fi
+
+    # Create symlink in bin directory
+    # Handle case where target is a directory (edge case)
+    [ -d "$BIN_DIR/$BINARY_NAME" ] && rm -rf "$BIN_DIR/$BINARY_NAME"
+    ln -sf "$SHARE_DIR/$BINARY_NAME" "$BIN_DIR/$BINARY_NAME"
 }
 
-# Check if install directory is in PATH
+# Check if bin directory is in PATH
 check_path() {
     case ":$PATH:" in
-        *":$INSTALL_DIR:"*) return 0 ;;
+        *":$BIN_DIR:"*) return 0 ;;
         *) return 1 ;;
     esac
 }
@@ -184,7 +206,7 @@ suggest_path_config() {
 
 # Verify installation
 verify_install() {
-    if ! "$INSTALL_DIR/$BINARY_NAME" --version >/dev/null 2>&1; then
+    if ! "$BIN_DIR/$BINARY_NAME" --version >/dev/null 2>&1; then
         error "Installation verification failed. The binary may be corrupted."
     fi
 }
@@ -194,7 +216,8 @@ print_success() {
     echo ""
     success "FlowDeck CLI ${VERSION} installed successfully!"
     echo ""
-    echo "Path: ~/.local/bin/flowdeck"
+    echo "Location: ~/.local/share/flowdeck/"
+    echo "Symlink:  ~/.local/bin/flowdeck"
     echo ""
 
     if ! check_path; then

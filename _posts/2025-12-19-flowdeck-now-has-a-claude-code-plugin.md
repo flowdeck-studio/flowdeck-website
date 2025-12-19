@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Hello Claude Code Plugin"
-date: 2025-12-19 10:00:00
+date: 2025-12-19 00:00:00
 category: whats-new
 tags: [claude-code, plugin, release]
 excerpt: "The new Claude Code plugin has shipped. Two commands to install, and Claude starts using FlowDeck by default for iOS development."

@@ -2980,6 +2980,12 @@ p {
     .post-content-main h3 {
         font-size: 1.35rem;
     }
+
+    .post-content-main pre,
+    .single-post-main .post-content-main pre {
+        max-width: calc(100vw - 2rem);
+        width: 100%;
+    }
 }
 
 @media (max-width: 480px) {

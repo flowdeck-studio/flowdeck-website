@@ -274,7 +274,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Handle form submission to MailerLite
+// Handle form submission to Lemon Squeezy
 signupForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -292,25 +292,17 @@ signupForm.addEventListener('submit', async (e) => {
     existingMessages.forEach(msg => msg.remove());
 
     try {
-        // Submit directly to MailerLite form endpoint
+        // Submit to Lemon Squeezy signup form endpoint
         const formData = new FormData();
-        formData.append('fields[email]', email);
-        formData.append('fields[name]', name);
-        formData.append('ml-submit', '1');
-        formData.append('anticsrf', 'true');
+        formData.append('email', email);
+        formData.append('name', name);
 
-        // Using fetch to submit to the same endpoint as your embedded form
-        const response = await fetch('https://assets.mailerlite.com/jsonp/1824513/forms/166871684685498190/subscribe', {
+        const response = await fetch('https://flowdeck.lemonsqueezy.com/email-subscribe/external', {
             method: 'POST',
-            mode: 'no-cors', // Important for JSONP endpoint
             body: formData
         });
 
-        // Since it's JSONP with no-cors, we assume success
-        // MailerLite will handle the actual subscription
-        const result = { success: true };
-
-        if (result.success) {
+        if (response.ok) {
             // Success - Hide form and show success message
             signupForm.style.display = 'none';
 
@@ -318,8 +310,8 @@ signupForm.addEventListener('submit', async (e) => {
             successMessage.className = 'signup-success-message';
             successMessage.innerHTML = `
                 <div style="text-align: center; padding: 2rem 0;">
-                    <h3 style="color: #10b981; font-size: 1.5rem; margin-bottom: 0.5rem;">Welcome to FlowDeck!</h3>
-                    <p style="color: #a1a1aa;">Check your email for confirmation.</p>
+                    <h3 style="color: #10b981; font-size: 1.5rem; margin-bottom: 0.5rem;">Thank You</h3>
+                    <p style="color: #a1a1aa;">You're on the list!</p>
                 </div>
             `;
             signupForm.parentElement.insertBefore(successMessage, signupForm);
@@ -332,10 +324,11 @@ signupForm.addEventListener('submit', async (e) => {
                 signupForm.reset();
             }, 4000);
         } else {
-            throw new Error('Subscription failed');
+            throw new Error(`Subscription failed with status ${response.status}: ${responseText}`);
         }
     } catch (error) {
         console.error('Subscription error:', error);
+        console.error('Error details:', error.message);
 
         // Show error message
         const errorMessage = document.createElement('div');

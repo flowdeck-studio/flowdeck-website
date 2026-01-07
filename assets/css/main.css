@@ -2737,6 +2737,7 @@ p {
 
 .post-content-main {
     max-width: 900px;
+    min-width: 0; /* Prevent grid blowout */
 }
 
 .post-content-main h2,
@@ -2804,6 +2805,8 @@ p {
     padding: 1.5rem;
     overflow-x: auto;
     margin-bottom: 1.5rem;
+    max-width: 100%;
+    word-wrap: break-word;
 }
 
 .post-content-main pre code {
@@ -2980,15 +2983,56 @@ p {
     .post-content-main h3 {
         font-size: 1.35rem;
     }
+
+    .post-content-main pre {
+        padding: 1.25rem;
+        font-size: 0.85rem;
+    }
+
+    .post-content-main {
+        max-width: 100%;
+    }
+
+    .single-post-content {
+        padding: 2rem 0 3rem;
+    }
 }
 
 @media (max-width: 480px) {
     .post-header-content .post-title {
         font-size: 1.75rem;
+        word-break: break-word;
     }
 
     .post-thumbnail {
         height: 180px;
+    }
+
+    .post-content-main pre {
+        padding: 1rem;
+        font-size: 0.8rem;
+        border-radius: 0.5rem;
+    }
+
+    .post-content-main code {
+        font-size: 0.8em;
+        word-break: break-word;
+    }
+
+    .single-post-content {
+        padding: 2rem 0 3rem;
+    }
+
+    .post-content-main h2 {
+        font-size: 1.5rem;
+    }
+
+    .post-content-main h3 {
+        font-size: 1.25rem;
+    }
+
+    .content-wrapper {
+        gap: 1.5rem;
     }
 }
 
@@ -3643,6 +3687,9 @@ p {
 
 .single-post-main .post-content-main {
     max-width: 100%;
+    min-width: 0; /* Prevent grid blowout */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
 
 @media (max-width: 1024px) {
@@ -3653,6 +3700,48 @@ p {
 
     .widget-cta {
         position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .single-post-main .content-wrapper {
+        gap: 1.5rem;
+    }
+
+    .widget-cta {
+        padding: 1.5rem !important;
+    }
+
+    .widget-cta .widget-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .single-post-main .content-wrapper {
+        gap: 1.25rem;
+    }
+
+    .single-post-main .post-content-main h2 {
+        font-size: 1.5rem !important;
+        margin-top: 2rem;
+    }
+
+    .single-post-main .post-content-main h3 {
+        font-size: 1.25rem !important;
+        margin-top: 1.5rem;
+    }
+
+    .widget-cta {
+        padding: 1.25rem !important;
+    }
+
+    .widget-cta .widget-title {
+        font-size: 1.35rem;
+    }
+
+    .cta-description {
+        font-size: 0.9rem;
     }
 }
 

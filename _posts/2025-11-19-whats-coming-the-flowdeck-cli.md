@@ -2,7 +2,7 @@
 layout: post
 title: "What’s Coming: The FlowDeck CLI"
 date: 2025-11-19 16:51:07 
-category: whats-new
+category: blog
 tags: []
 excerpt: "Big changes coming to FlowDeck. Not visible yet, but they’ll make everything better. I’m rebuilding FlowDeck’s core as a Swift CLI. The extension you’re using now will stay the same…"
 ---

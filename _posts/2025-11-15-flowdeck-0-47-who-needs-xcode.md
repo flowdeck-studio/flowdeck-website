@@ -2,7 +2,7 @@
 layout: post
 title: "🖼️ FlowDeck 0.47: Who asked for Asset Catalog support?"
 date: 2025-11-15 19:34:28 
-category: whats-new
+category: blog
 tags: []
 excerpt: "👋 Hey there fellow testers! Major update this week and so many things coming up with 0.47.0.  Are you sitting down?  Here we go… 📦 Add and remove Swift Packages As…"
 ---

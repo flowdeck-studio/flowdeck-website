@@ -2,7 +2,7 @@
 layout: post
 title: "🚀 FlowDeck is Here!"
 date: 2025-10-10 19:16:51 
-category: whats-new
+category: blog
 tags: []
 excerpt: "I built FlowDeck because I was tired of choosing between AI assistance and iOS development. Four months ago I was debugging a SwiftUI state issue in Xcode. Thirty minutes, no…"
 ---

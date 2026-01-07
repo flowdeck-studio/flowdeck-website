@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Blog
-permalink: /whats-new/
+permalink: /blog/
 body_class: blog-main whats-new-page
 ---
 
@@ -20,7 +20,7 @@ body_class: blog-main whats-new-page
     <div class="container">
       <div class="blog-grid-single">
         <div class="blog-posts">
-          {% assign whats_new_posts = site.posts | where: "category", "whats-new" %}
+          {% assign whats_new_posts = site.posts | where: "category", "blog" %}
 
           {% if whats_new_posts.size > 0 %}
           <div class="posts-grid">

@@ -2,7 +2,7 @@
 layout: post
 title: "⚡ FlowDeck 0.43: Faster, Smarter, More Familiar"
 date: 2025-10-22 20:01:00 
-category: whats-new
+category: blog
 tags: []
 excerpt: "👋 Hey there Beta friends! This week, FlowDeck 0.43.0 ships with more improvements across the board. 📱 Improved Device Builds Running and debugging on iPhone or iPad is faster and more stable…."
 ---

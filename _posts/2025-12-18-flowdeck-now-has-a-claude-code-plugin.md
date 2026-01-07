@@ -2,7 +2,7 @@
 layout: post
 title: "FlowDeck now has a Claude Code Plugin"
 date: 2025-12-18 10:00:00
-category: whats-new
+category: blog
 tags: [claude-code, plugin, release]
 excerpt: "The new Claude Code plugin has shipped. Two commands to install, and Claude starts using FlowDeck by default for iOS development."
 ---

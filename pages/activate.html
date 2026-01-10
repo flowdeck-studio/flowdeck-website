@@ -1,0 +1,255 @@
+---
+layout: default
+title: "Activate FlowDeck CLI"
+description: "Activate your FlowDeck CLI license. Unlock terminal-first iOS development for $29/year."
+permalink: /cli/activate/
+---
+
+<style>
+.trial-ended-page {
+    min-height: 90vh;
+    padding: 8rem 0 4rem;
+}
+
+.trial-container {
+    max-width: 420px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.purchase-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(139, 92, 246, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 20px;
+    color: #c084fc;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.5rem;
+}
+
+.trial-title {
+    font-size: clamp(1.75rem, 5vw, 2.25rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.trial-subtitle {
+    font-size: 1.1rem;
+    color: #a1a1aa;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.trial-subtitle strong {
+    color: #c084fc;
+}
+
+.purchase-card {
+    background: linear-gradient(145deg, rgba(139, 92, 246, 0.08), rgba(59, 130, 246, 0.05));
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 1.25rem;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 4px 24px rgba(139, 92, 246, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+}
+
+.purchase-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #9333ea, #7c3aed, #3b82f6, #7c3aed, #9333ea);
+    background-size: 200% 100%;
+}
+
+.price-display {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.price-old {
+    display: block;
+    font-size: 1.1rem;
+    color: #52525b;
+    text-decoration: line-through;
+    margin-bottom: 0.25rem;
+}
+
+.price-amount {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.03em;
+}
+
+.price-period {
+    font-size: 1.25rem;
+    color: #71717a;
+}
+
+.price-breakdown {
+    display: inline-block;
+    background: rgba(34, 197, 94, 0.1);
+    color: #4ade80;
+    padding: 0.35rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 0.75rem;
+}
+
+.value-props {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    text-align: left;
+}
+
+.value-props li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.65rem 0;
+    color: #e4e4e7;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.value-props li i {
+    color: #22c55e;
+    font-size: 0.85rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.purchase-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1.1rem 2rem;
+    background: linear-gradient(135deg, #9333ea, #7c3aed);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+}
+
+.purchase-btn:hover {
+    background: linear-gradient(135deg, #a855f7, #8b5cf6);
+    transform: translateY(-2px);
+    color: #fff;
+    box-shadow: 0 6px 25px rgba(139, 92, 246, 0.4);
+}
+
+.btn-subtext {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    color: #71717a;
+}
+
+.guarantee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    color: #a1a1aa;
+    font-size: 0.9rem;
+}
+
+.guarantee i {
+    color: #22c55e;
+}
+
+.back-link {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+}
+
+.back-link a {
+    color: #71717a;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.back-link a:hover {
+    color: #a1a1aa;
+}
+
+@media (max-width: 480px) {
+    .purchase-card {
+        padding: 1.75rem;
+    }
+
+    .price-amount {
+        font-size: 2.75rem;
+    }
+}
+</style>
+
+<main class="trial-ended-page">
+    <div class="container">
+        <div class="trial-container">
+            <span class="purchase-badge">
+                <i class="fas fa-bolt"></i>
+                50% Off Launch Price
+            </span>
+
+            <h1 class="trial-title">You Liked It. Keep It.</h1>
+            <p class="trial-subtitle">
+                Your workflow. Your terminal.<br><strong>100% less Xcode crashes.</strong>
+            </p>
+
+            <div class="purchase-card">
+                <div class="price-display">
+                    <span class="price-old">$59</span>
+                    <span class="price-amount">$29</span>
+                    <span class="price-period">/year</span>
+                </div>
+
+                <ul class="value-props">
+                    <li><i class="fas fa-check"></i> Full control — tests, simulators, devices, builds</li>
+                    <li><i class="fas fa-check"></i> AI-native — works seamlessly with Claude & Cursor</li>
+                    <li><i class="fas fa-check"></i> Automation-ready — JSON output for CI/CD</li>
+                    <li><i class="fas fa-check"></i> Always improving — 1 year of updates included</li>
+                </ul>
+
+                <a href="https://store.flowdeck.studio/buy/e6fa7284-4c29-4b3e-8c76-e3b46c35c52c" class="purchase-btn">
+                    Activate Now — $29/year
+                </a>
+                <span class="btn-subtext">Use on 2 machines • Instant activation</span>
+
+                <p class="guarantee">
+                    <i class="fas fa-lock"></i>
+                    Secure checkout via Lemon Squeezy
+                </p>
+            </div>
+
+            <p class="back-link">
+                Questions? <a href="mailto:support@flowdeck.studio">Get in touch</a>
+            </p>
+        </div>
+    </div>
+</main>

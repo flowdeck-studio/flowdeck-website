@@ -305,6 +305,7 @@ p {
     position: relative;
     overflow: hidden;
     margin-top: 0;
+    padding-bottom: 50px;
 }
 
 .hero::before {
@@ -3843,7 +3844,7 @@ p {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    align-items: start;
+    align-items: stretch;
 }
 
 .hero-cli .hero-content {
@@ -3852,6 +3853,8 @@ p {
 
 .hero-cli .hero-visual {
     margin-top: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .hero-cli .hero-cta-primary {
@@ -3898,10 +3901,8 @@ p {
     overflow: hidden;
     font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    max-width: 520px;
     width: 100%;
-    margin-top: 20px;
-    height: 400px;
+    height: 435px;
 }
 
 .terminal-header {

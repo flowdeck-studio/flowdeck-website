@@ -838,6 +838,13 @@ function closeVideoLightbox() {
     }
 }
 
+// Docs button - stop propagation to prevent image lightbox
+document.querySelectorAll('.btn-docs').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+});
+
 // Video button triggers
 document.querySelectorAll('.btn-video').forEach(btn => {
     btn.addEventListener('click', (e) => {

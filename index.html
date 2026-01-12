@@ -10,7 +10,7 @@ body_class: home-page
             <div class="hero-grid">
                 <header class="hero-content">
                     <h1 id="hero-title" class="hero-title">Stop switching to <span class="gradient-text-pro">Xcode</span> just to hit Build.</h1>
-                    <p class="hero-subtitle">Ship without leaving Cursor. Or your terminal. Or let AI do it for you.  FlowDeck keeps you in the flow..</p>
+                    <p class="hero-subtitle">Ship without leaving Cursor. Or your terminal. Or let AI do it for you. FlowDeck keeps you in the flow.</p>
 
                     <div class="hero-ctas-parallel">
                         <div class="cta-buttons-row">
@@ -52,37 +52,8 @@ body_class: home-page
     <section class="the-why-v5" aria-labelledby="why-title">
         <div class="container">
             <div class="why-content-v5">
-                <p class="why-opener">You picked your tools. Your editor. Your AI. Your process.</p>
-                <p class="why-pain">But Xcode still breaks your flow.</p>
+                <p class="why-statement">You work from the terminal now. <span class="dim">Your editor has better AI.</span> But Xcode still breaks your flow.</p>
                 <p class="why-resolution">Not anymore.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Built For Section - Card Grid -->
-    <section class="who-its-for-v4" aria-labelledby="audience-title">
-        <div class="container">
-            <header>
-                <h2 id="audience-title" class="section-title">Is this you?</h2>
-            </header>
-
-            <div class="audience-grid-v4">
-                <div class="audience-item accent-blue">
-                    <h3>"Cursor keeps me in flow"</h3>
-                    <p>You left Xcode for a reason. Now you can stay gone.</p>
-                </div>
-                <div class="audience-item accent-purple">
-                    <h3>"My AI writes the code"</h3>
-                    <p>Now it can build and debug it too.</p>
-                </div>
-                <div class="audience-item accent-green">
-                    <h3>"I automate Apple builds"</h3>
-                    <p>You don't need 200 different tools anymore.</p>
-                </div>
-                <div class="audience-item accent-orange">
-                    <h3>"I just hate Xcode"</h3>
-                    <p>You already know why you're here.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -102,25 +73,7 @@ body_class: home-page
                             </div>
                             <div class="icon-feature-text">
                                 <h4>TUI / Interactive Mode</h4>
-                                <p>One terminal. One keypress. B builds. R runs. L streams logs. The full Xcode workflow.</p>
-                            </div>
-                        </div>
-                        <div class="icon-feature">
-                            <div class="icon-feature-icon purple">
-                                <i class="fas fa-code"></i>
-                            </div>
-                            <div class="icon-feature-text">
-                                <h4>JSON Output</h4>
-                                <p>Structured output across all commands. Your CI parses it. Your AI fixes it.</p>
-                            </div>
-                        </div>
-                        <div class="icon-feature">
-                            <div class="icon-feature-icon purple">
-                                <i class="fas fa-mobile-alt"></i>
-                            </div>
-                            <div class="icon-feature-text">
-                                <h4>Simulator & Device Management</h4>
-                                <p>Create, boot, list, screenshot, reset. All from the command line.</p>
+                                <p>B builds. R runs. K cleans. One keypress. No Xcode.</p>
                             </div>
                         </div>
                         <div class="icon-feature">
@@ -129,7 +82,25 @@ body_class: home-page
                             </div>
                             <div class="icon-feature-text">
                                 <h4>Real-time Log Streaming</h4>
-                                <p>Live OSLog in your terminal. Filter by app, level, or subsystem.</p>
+                                <p>OSLog in your terminal. See what broke without switching windows.</p>
+                            </div>
+                        </div>
+                        <div class="icon-feature">
+                            <div class="icon-feature-icon purple">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="icon-feature-text">
+                                <h4>Simulator & Device Management</h4>
+                                <p>iOS, watchOS, tvOS, visionOS. Boot, reset, screenshot. One command.</p>
+                            </div>
+                        </div>
+                        <div class="icon-feature">
+                            <div class="icon-feature-icon purple">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="icon-feature-text">
+                                <h4>JSON Output</h4>
+                                <p>xcodebuild output is chaos. This isn't. Your CI parses it. Your AI fixes it.</p>
                             </div>
                         </div>
                         <div class="icon-feature">
@@ -137,8 +108,8 @@ body_class: home-page
                                 <i class="fas fa-cube"></i>
                             </div>
                             <div class="icon-feature-text">
-                                <h4>Swift Package Manager</h4>
-                                <p>Add, update, remove dependencies. Full SPM support.</p>
+                                <h4>Package Management & More</h4>
+                                <p>SPM, provisioning, project discovery. No more "let me just open Xcode." Gone.</p>
                             </div>
                         </div>
                     </div>
@@ -151,6 +122,9 @@ body_class: home-page
                         <a href="https://docs.flowdeck.studio/cli/introduction" class="btn-docs" target="_blank">
                             <i class="fas fa-book"></i> Read the docs
                         </a>
+                        <button class="btn-docs btn-video" data-video="/assets/intro.mp4">
+                            <i class="fas fa-play"></i> Watch the intro video
+                        </button>
                     </div>
                 </div>
             </div>
@@ -170,7 +144,7 @@ body_class: home-page
                     <li>Direct CLI access. No MCP servers, no wasted tokens</li>
                     <li>Real-time log streaming. Agents see what breaks</li>
                     <li>Skills & plugins for Claude Code, Codex & OpenCode</li>
-                    <li>UI Automation <span class="coming-soon-badge">Coming soon</span></li>
+                    <li>Agent UI Automation <span class="coming-soon-badge">Coming soon</span></li>
                 </ul>
 
                 <p class="ai-tagline-inline">Your AI writes the code. FlowDeck closes the loop.</p>
@@ -192,8 +166,17 @@ body_class: home-page
                                 <i class="fas fa-folder-open"></i>
                             </div>
                             <div class="icon-feature-text">
-                                <h4>Xcode Compatible</h4>
-                                <p>Open your Xcode projects directly.</p>
+                                <h4>Full Xcode Alternative</h4>
+                                <p>Open your Xcode projects. Build, run, test. All from Cursor.</p>
+                            </div>
+                        </div>
+                        <div class="icon-feature">
+                            <div class="icon-feature-icon blue">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="icon-feature-text">
+                                <h4>Swift Intellisense</h4>
+                                <p>Autocomplete, go-to-definition, find references. SourceKit-LSP for Xcode projects.</p>
                             </div>
                         </div>
                         <div class="icon-feature">
@@ -216,15 +199,6 @@ body_class: home-page
                         </div>
                         <div class="icon-feature">
                             <div class="icon-feature-icon blue">
-                                <i class="fas fa-lightbulb"></i>
-                            </div>
-                            <div class="icon-feature-text">
-                                <h4>Swift Intellisense</h4>
-                                <p>Autocomplete, go-to-definition, find references. SourceKit-LSP.</p>
-                            </div>
-                        </div>
-                        <div class="icon-feature">
-                            <div class="icon-feature-icon blue">
                                 <i class="fas fa-th-list"></i>
                             </div>
                             <div class="icon-feature-text">
@@ -243,6 +217,7 @@ body_class: home-page
                             <i class="fas fa-book"></i> Read the docs
                         </a>
                     </div>
+                    <p class="product-showcase-note">Works on Cursor, Antigravity, Windsurf and all VSCode editors.</p>
                 </div>
             </div>
         </div>
@@ -254,6 +229,15 @@ body_class: home-page
         <div class="lightbox-content">
             <button class="lightbox-close"><i class="fas fa-times"></i></button>
             <img src="" alt="" class="lightbox-image">
+        </div>
+    </div>
+
+    <!-- Video Lightbox -->
+    <div class="lightbox" id="video-lightbox">
+        <div class="lightbox-backdrop"></div>
+        <div class="lightbox-content lightbox-content-video">
+            <button class="lightbox-close"><i class="fas fa-times"></i></button>
+            <video class="lightbox-video" controls playsinline></video>
         </div>
     </div>
 
@@ -351,7 +335,7 @@ body_class: home-page
             <p class="diy-pretext">Before you say "I can build that myself"...</p>
             <h2 id="diy-title" class="diy-title">Yes, We Also Know</h2>
             <p class="diy-body">You could stitch this together yourself. 48 open source projects. 102 config files. Mass ChatGPT and SO threads. We'll wait.</p>
-            <p class="diy-alternative">Versus one <button class="curl-cta open-install-modal">curl</button> command or a single <a href="vscode:extension/flowdeck.flowdeck" class="click-cta">click</a>.</p>
+            <p class="diy-alternative">Or you can use one <button class="curl-cta open-install-modal">curl</button> command or a single <a href="vscode:extension/flowdeck.flowdeck" class="click-cta">click</a></p>
         </div>
     </section>
 

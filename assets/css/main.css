@@ -3903,7 +3903,7 @@ p {
     font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     width: 100%;
-    height: 435px;
+    height: 400px;
 }
 
 .terminal-header {
@@ -6192,32 +6192,31 @@ p {
 }
 
 .why-content-v5 {
-    max-width: 700px;
+    max-width: 850px;
     margin: 0 auto;
     text-align: center;
 }
 
-.why-opener {
-    font-size: 1.125rem;
-    color: #71717a;
-    line-height: 1.6;
-    margin-bottom: 0.75rem;
-    font-weight: 400;
+.why-statement {
+    font-size: 2.25rem;
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
 }
 
-.why-pain {
-    font-size: 2.5rem;
-    color: #fff;
-    font-weight: 700;
-    line-height: 1.3;
-    margin-bottom: 0.75rem;
+.why-statement .dim {
+    color: rgba(255, 255, 255, 0.55);
 }
 
 .why-resolution {
-    font-size: 1.375rem;
-    color: #3b82f6;
-    font-weight: 600;
+    font-size: 2.25rem;
+    font-weight: 700;
     margin-bottom: 0;
+    background: linear-gradient(135deg, #a855f7, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 @media (max-width: 768px) {
@@ -6225,16 +6224,12 @@ p {
         padding: 5rem 0;
     }
 
-    .why-opener {
-        font-size: 1rem;
-    }
-
-    .why-pain {
-        font-size: 1.875rem;
+    .why-statement {
+        font-size: 1.5rem;
     }
 
     .why-resolution {
-        font-size: 1.125rem;
+        font-size: 1.5rem;
     }
 }
 
@@ -6450,6 +6445,7 @@ p {
     opacity: 0.4;
     z-index: 0;
     transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
 .floating-image-container:hover::before {
@@ -6480,6 +6476,13 @@ p {
 .product-showcase-docs {
     text-align: center;
     margin-top: 0.85rem;
+}
+
+.product-showcase-note {
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 1rem;
 }
 
 .btn-docs {
@@ -6806,6 +6809,19 @@ p {
 .lightbox-image {
     max-width: 95vw;
     max-height: 90vh;
+    border-radius: 0.5rem;
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-content-video {
+    width: 90vw;
+    max-width: 960px;
+    aspect-ratio: 16 / 9;
+}
+
+.lightbox-video {
+    width: 100%;
+    height: 100%;
     border-radius: 0.5rem;
     box-shadow: 0 30px 100px rgba(0, 0, 0, 0.8);
 }

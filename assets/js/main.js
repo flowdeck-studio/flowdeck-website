@@ -792,7 +792,11 @@ document.querySelectorAll('.lightbox-trigger').forEach(img => {
 
 // Also trigger on wrapper click
 document.querySelectorAll('.showcase-image-wrapper, .product-hero-image, .floating-image-container').forEach(wrapper => {
-    wrapper.addEventListener('click', () => {
+    wrapper.addEventListener('click', (e) => {
+        // Ignore clicks on buttons, links, or their children
+        if (e.target.closest('button, a, .btn-docs, .btn-video')) {
+            return;
+        }
         const img = wrapper.querySelector('img');
         if (img) {
             openLightbox(img.src);
@@ -807,5 +811,50 @@ lightboxBackdrop?.addEventListener('click', closeLightbox);
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && lightbox?.classList.contains('active')) {
         closeLightbox();
+    }
+});
+
+// Video Lightbox
+const videoLightbox = document.getElementById('video-lightbox');
+const videoLightboxVideo = videoLightbox?.querySelector('.lightbox-video');
+const videoLightboxClose = videoLightbox?.querySelector('.lightbox-close');
+const videoLightboxBackdrop = videoLightbox?.querySelector('.lightbox-backdrop');
+
+function openVideoLightbox(videoSrc) {
+    if (videoLightbox && videoLightboxVideo) {
+        videoLightboxVideo.src = videoSrc;
+        videoLightboxVideo.play();
+        videoLightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeVideoLightbox() {
+    if (videoLightbox && videoLightboxVideo) {
+        videoLightboxVideo.pause();
+        videoLightboxVideo.currentTime = 0;
+        videoLightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Video button triggers
+document.querySelectorAll('.btn-video').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const videoSrc = btn.dataset.video;
+        if (videoSrc) {
+            openVideoLightbox(videoSrc);
+        }
+    });
+});
+
+// Close video lightbox
+videoLightboxClose?.addEventListener('click', closeVideoLightbox);
+videoLightboxBackdrop?.addEventListener('click', closeVideoLightbox);
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && videoLightbox?.classList.contains('active')) {
+        closeVideoLightbox();
     }
 });

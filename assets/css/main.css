@@ -9153,3 +9153,72 @@ p {
     box-shadow: 0 6px 20px 0 rgba(59, 130, 246, 0.4);
 }
 
+/* ===== Legal Pages (Privacy Policy, Terms) ===== */
+.legal-content {
+    padding: 8rem 0 6rem;
+    min-height: 100vh;
+}
+
+.legal-article {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.legal-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.legal-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.legal-updated {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+}
+
+.legal-section {
+    margin-bottom: 2.5rem;
+}
+
+.legal-section h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.legal-section p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.legal-section ul {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.legal-section li {
+    margin-bottom: 0.5rem;
+}
+
+.legal-section a {
+    color: #a78bfa;
+    text-decoration: none;
+}
+
+.legal-section a:hover {
+    text-decoration: underline;
+}
+
+.legal-section strong {
+    color: #fff;
+}
+

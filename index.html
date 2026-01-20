@@ -58,7 +58,7 @@ body_class: home-page
     <section class="zero-to-simulator">
         <div class="video-full-bleed">
             <div class="video-full-frame">
-                <video id="zero-to-sim-video" class="video-full" preload="metadata" playsinline controls muted>
+                <video id="zero-to-sim-video" class="video-full" preload="metadata" playsinline controls>
                     <source src="{{ site.baseurl }}/assets/videos/create-project.mp4" type="video/mp4">
                 </video>
                 <div class="video-overlay" aria-hidden="true">
@@ -329,27 +329,6 @@ body_class: home-page
         </div>
     </section>
 
-    <!-- Final CTA Section -->
-    <section id="cta" class="cta" aria-labelledby="cta-title">
-        <div class="container">
-            <div class="cta-content" style="text-align: center;">
-                <h2 class="section-title">Start Building with the CLI</h2>
-                <p class="section-subtitle">FlowDeck CLI. 7-day trial. No credit card required.</p>
-
-                <div class="install-command-block install-command-cta">
-                    <div class="install-command">
-                        <code>curl -sSL https://flowdeck.studio/install.sh | sh</code>
-                        <button class="copy-btn" data-copy="curl -sSL https://flowdeck.studio/install.sh | sh" aria-label="Copy install command">
-                            <i class="fas fa-copy"></i>
-                            <span class="copy-tooltip">Copied!</span>
-                        </button>
-                    </div>
-                    <p class="install-helper">Then run <code>flowdeck -i</code> from your Xcode project directory.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Join Community Section -->
     <section id="join" class="join-beta" aria-labelledby="join-title">
         <div class="container">
@@ -436,6 +415,27 @@ body_class: home-page
                     </summary>
                     <p class="faq-answer">Yes. FlowDeck works alongside Claude Code, Codex, OpenCode, any terminal-based AI assistant you already use. No changes to your existing subscriptions.</p>
                 </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="cta" class="cta" aria-labelledby="cta-title">
+        <div class="container">
+            <div class="cta-content" style="text-align: center;">
+                <h2 class="section-title">Start Building with the CLI</h2>
+                <p class="section-subtitle">FlowDeck CLI. 7-day trial. No credit card required.</p>
+
+                <div class="install-command-block install-command-cta">
+                    <div class="install-command">
+                        <code>curl -sSL https://flowdeck.studio/install.sh | sh</code>
+                        <button class="copy-btn" data-copy="curl -sSL https://flowdeck.studio/install.sh | sh" aria-label="Copy install command">
+                            <i class="fas fa-copy"></i>
+                            <span class="copy-tooltip">Copied!</span>
+                        </button>
+                    </div>
+                    <p class="install-helper">Then run <code>flowdeck -i</code> from your Xcode project directory.</p>
+                </div>
             </div>
         </div>
     </section>

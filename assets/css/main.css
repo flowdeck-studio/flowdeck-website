@@ -209,6 +209,28 @@ p {
     color: #fff;
 }
 
+/* Active nav link - purple underline (default/CLI) */
+.nav-link.nav-active {
+    color: #fff;
+    position: relative;
+}
+
+.nav-link.nav-active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+    border-radius: 1px;
+}
+
+/* Extension page - blue underline */
+.extension-page .nav-link.nav-active::after {
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
 .download-btn {
     background: linear-gradient(135deg, #3b82f6, #1d4ed8);
     color: white !important;

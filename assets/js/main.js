@@ -28,28 +28,38 @@ window.addEventListener('scroll', () => {
 });
 
 // Mobile menu toggle
-document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-    const mobileMenu = document.querySelector('.mobile-menu');
-    mobileMenu.classList.toggle('active');
-});
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const mobileMenu = document.querySelector('.mobile-menu');
 
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.mobile-menu .nav-link').forEach(link => {
-    link.addEventListener('click', function() {
-        const mobileMenu = document.querySelector('.mobile-menu');
-        mobileMenu.classList.remove('active');
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        mobileMenu.classList.toggle('active');
+        const isExpanded = mobileMenu.classList.contains('active');
+        mobileMenuBtn.setAttribute('aria-expanded', isExpanded);
+        mobileMenu.setAttribute('aria-hidden', !isExpanded);
     });
-});
 
-// Close mobile menu when clicking outside
-document.addEventListener('click', function(e) {
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    
-    if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-        mobileMenu.classList.remove('active');
-    }
-});
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.mobile-menu .nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (mobileMenu.classList.contains('active') && 
+            !mobileMenu.contains(e.target) && 
+            !mobileMenuBtn.contains(e.target)) {
+            mobileMenu.classList.remove('active');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+        }
+    });
+}
 
 // Handle Netlify form submissions
 document.querySelectorAll('.waitlist-form').forEach(form => {

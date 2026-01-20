@@ -1,0 +1,309 @@
+---
+layout: default
+title: Why Not Just Use xcodebuild? | FlowDeck CLI
+description: A side-by-side comparison of Apple's xcodebuild tools vs FlowDeck CLI. See why 8 commands beat 84.
+permalink: /cli/xcodebuild/
+body_class: home-page xcodebuild-page
+---
+
+<main>
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="container">
+            <a href="{{ site.baseurl }}/">FlowDeck CLI</a>
+            <span class="breadcrumb-sep">/</span>
+            <span>xcodebuild Comparison</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="xcodebuild-hero" aria-labelledby="xcodebuild-hero-title">
+        <div class="container">
+            <header class="xcodebuild-hero-header">
+                <h1 id="xcodebuild-hero-title" class="xcodebuild-hero-title">Why Not Just Use <code>xcodebuild</code>?</h1>
+                <p class="xcodebuild-hero-subtitle">You can. We do.</p>
+            </header>
+            <div class="xcodebuild-hero-content">
+                <p class="xcodebuild-hero-lead">
+                    FlowDeck calls <code>xcodebuild</code> under the hood. Same build system, same schemes, same signing. <strong>The difference is everything around it.</strong>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Problem Section -->
+    <section class="xcodebuild-problem" aria-labelledby="problem-title">
+        <div class="container">
+            <header>
+                <h2 id="problem-title" class="section-title">The Problem Isn't <code>xcodebuild</code></h2>
+                <p class="section-subtitle">It's that <code>xcodebuild</code> is just one piece.</p>
+            </header>
+
+            <div class="problem-content">
+                <p class="problem-lead">A build needs:</p>
+                <ul class="problem-list">
+                    <li><code>xcodebuild</code> to compile</li>
+                    <li><code>xcrun simctl</code> to manage simulators</li>
+                    <li><code>xcrun devicectl</code> to manage physical devices</li>
+                    <li><code>xcrun simctl launch</code> to run the app</li>
+                    <li><code>xcrun simctl spawn ... log stream</code> to see logs</li>
+                    <li>Shell scripts to glue it together</li>
+                    <li>Regex to parse the output</li>
+                </ul>
+                <p class="problem-conclusion">That's not a workflow. <strong>That's archaeology.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Side by Side Comparison -->
+    <section class="xcodebuild-sidebyside" aria-labelledby="sidebyside-title">
+        <div class="container">
+            <header>
+                <h2 id="sidebyside-title" class="section-title">Side by Side</h2>
+            </header>
+
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>What You're Doing</th>
+                            <th class="col-apple">Apple's Tools</th>
+                            <th class="col-flowdeck">FlowDeck</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="task-cell">Target a simulator</td>
+                            <td class="apple-cell"><code>xcrun simctl list</code>, find UDID, construct <code>platform=iOS Simulator,name=iPhone 16,OS=18.0</code></td>
+                            <td class="flowdeck-cell"><code>-S "iPhone 16"</code></td>
+                        </tr>
+                        <tr>
+                            <td class="task-cell">Target a device</td>
+                            <td class="apple-cell"><code>xcrun devicectl list</code>, copy UDID, hope the syntax is right</td>
+                            <td class="flowdeck-cell"><code>-D "iPhone"</code></td>
+                        </tr>
+                        <tr>
+                            <td class="task-cell">Build for Mac</td>
+                            <td class="apple-cell">Figure out which destination string works this year</td>
+                            <td class="flowdeck-cell"><code>-D "My Mac"</code></td>
+                        </tr>
+                        <tr>
+                            <td class="task-cell">Build and run</td>
+                            <td class="apple-cell"><code>xcodebuild</code>, then <code>simctl install</code>, then <code>simctl launch</code></td>
+                            <td class="flowdeck-cell"><code>flowdeck run</code></td>
+                        </tr>
+                        <tr>
+                            <td class="task-cell">Stream logs</td>
+                            <td class="apple-cell"><code>xcrun simctl spawn booted log stream --predicate 'subsystem contains...'</code></td>
+                            <td class="flowdeck-cell"><code>flowdeck logs</code></td>
+                        </tr>
+                        <tr>
+                            <td class="task-cell">Run one test</td>
+                            <td class="apple-cell"><code>-only-testing:MyAppTests/LoginTests/testValidLogin</code></td>
+                            <td class="flowdeck-cell"><code>--only LoginTests/testValidLogin</code></td>
+                        </tr>
+                        <tr>
+                            <td class="task-cell">Skip slow tests</td>
+                            <td class="apple-cell"><code>-skip-testing:MyAppTests/SlowTests</code></td>
+                            <td class="flowdeck-cell"><code>--skip SlowTests</code></td>
+                        </tr>
+                        <tr>
+                            <td class="task-cell">Discover tests</td>
+                            <td class="apple-cell">Build first, then parse output</td>
+                            <td class="flowdeck-cell"><code>flowdeck test discover</code></td>
+                        </tr>
+                        <tr>
+                            <td class="task-cell">Find schemes</td>
+                            <td class="apple-cell"><code>xcodebuild -list</code> (2-5 second wait)</td>
+                            <td class="flowdeck-cell"><code>flowdeck context</code> (instant)</td>
+                        </tr>
+                        <tr>
+                            <td class="task-cell">Clean everything</td>
+                            <td class="apple-cell"><code>xcodebuild clean</code> + <code>rm -rf ~/Library/Developer/Xcode/DerivedData</code> + maybe Xcode cache too</td>
+                            <td class="flowdeck-cell"><code>flowdeck clean --all</code></td>
+                        </tr>
+                        <tr>
+                            <td class="task-cell">Parse output</td>
+                            <td class="apple-cell">Regex. Hope. Pray.</td>
+                            <td class="flowdeck-cell"><code>--json</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8 Commands Section -->
+    <section class="xcodebuild-commands" aria-labelledby="commands-title">
+        <div class="container">
+            <header>
+                <h2 id="commands-title" class="section-title">8 Commands. Not 84.</h2>
+            </header>
+
+            <div class="commands-comparison">
+                <div class="commands-card commands-apple">
+                    <h3>Apple's tooling:</h3>
+                    <div class="commands-list">
+                        <code>xcodebuild</code><code>xcrun</code><code>simctl</code><code>devicectl</code><code>instruments</code><code>xcode-select</code><code>ios-deploy</code><code>xcresulttool</code><code>xctrace</code><code>altool</code><code>notarytool</code><span class="commands-ellipsis">...</span>
+                    </div>
+                </div>
+
+                <div class="commands-card commands-flowdeck">
+                    <h3>FlowDeck:</h3>
+                    <div class="commands-list commands-list-clean">
+                        <code>context</code><code>build</code><code>run</code><code>test</code><code>clean</code><code>simulator</code><code>device</code><code>logs</code>
+                    </div>
+                    <p class="commands-tagline">Learn once. Use everywhere.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Output Comparison Section -->
+    <section class="xcodebuild-output" aria-labelledby="output-title">
+        <div class="container">
+            <header>
+                <h2 id="output-title" class="section-title">Output You Can Actually Use</h2>
+            </header>
+
+            <div class="output-comparison">
+                <div class="output-card output-apple">
+                    <div class="output-card-header">
+                        <span class="output-label">xcodebuild output:</span>
+                    </div>
+                    <div class="output-card-body">
+                        <pre class="output-code"><code>CompileSwift normal arm64 /Users/dev/MyApp/ContentView.swift (in target 'MyApp' from project 'MyApp')
+    cd /Users/dev/MyApp
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -c -primary-file /Users/dev/MyApp/ContentView.swift ...
+    
+/Users/dev/MyApp/ContentView.swift:42:15: error: cannot convert value of type 'String' to expected argument type 'Int'
+        return someFunction(value)
+                            ^~~~~</code></pre>
+                        <p class="output-note">Plus 400 more lines.</p>
+                    </div>
+                </div>
+
+                <div class="output-card output-flowdeck">
+                    <div class="output-card-header">
+                        <span class="output-label">FlowDeck output:</span>
+                    </div>
+                    <div class="output-card-body">
+                        <pre class="output-code output-code-json"><code>{
+  <span class="json-key">"type"</span>: <span class="json-val">"build_started"</span>,
+  <span class="json-key">"scheme"</span>: <span class="json-val">"MyApp"</span>,
+  <span class="json-key">"destination"</span>: <span class="json-val">"iPhone 16"</span>
+}
+{
+  <span class="json-key">"type"</span>: <span class="json-val">"error"</span>,
+  <span class="json-key">"file"</span>: <span class="json-val">"ContentView.swift"</span>,
+  <span class="json-key">"line"</span>: <span class="json-val">42</span>,
+  <span class="json-key">"column"</span>: <span class="json-val">15</span>,
+  <span class="json-key">"message"</span>: <span class="json-val">"cannot convert 'String' to 'Int'"</span>
+}
+{
+  <span class="json-key">"type"</span>: <span class="json-val">"build_completed"</span>,
+  <span class="json-key">"success"</span>: <span class="json-val">false</span>,
+  <span class="json-key">"duration"</span>: <span class="json-val">8.2</span>
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <p class="output-tagline">Your CI parses it. Your AI agent understands it. <strong>You see what matters.</strong></p>
+        </div>
+    </section>
+
+    <!-- Speed Section -->
+    <section class="xcodebuild-speed" aria-labelledby="speed-title">
+        <div class="container">
+            <header>
+                <h2 id="speed-title" class="section-title">Speed Where It Counts</h2>
+            </header>
+
+            <div class="speed-table-wrapper">
+                <table class="speed-table">
+                    <thead>
+                        <tr>
+                            <th>Operation</th>
+                            <th class="col-apple">xcodebuild</th>
+                            <th class="col-flowdeck">FlowDeck</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Scheme discovery</td>
+                            <td class="apple-cell">2-5 seconds</td>
+                            <td class="flowdeck-cell"><strong>Instant</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Simulator lookup</td>
+                            <td class="apple-cell">Spawns process, parses text</td>
+                            <td class="flowdeck-cell"><strong>Native, cached</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Test discovery</td>
+                            <td class="apple-cell">Requires build</td>
+                            <td class="flowdeck-cell"><strong>AST parsing, no build</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p class="speed-note">These aren't benchmarks for marketing. These are the operations you run <strong>fifty times a day</strong>.</p>
+        </div>
+    </section>
+
+    <!-- What Doesn't Change Section -->
+    <section class="xcodebuild-unchanged" aria-labelledby="unchanged-title">
+        <div class="container">
+            <header>
+                <h2 id="unchanged-title" class="section-title">What Doesn't Change</h2>
+            </header>
+
+            <div class="unchanged-grid">
+                <div class="unchanged-item">
+                    <i class="fas fa-check"></i>
+                    <span>Your <code>.xcodeproj</code> and <code>.xcworkspace</code> files</span>
+                </div>
+                <div class="unchanged-item">
+                    <i class="fas fa-check"></i>
+                    <span>Your build settings and schemes</span>
+                </div>
+                <div class="unchanged-item">
+                    <i class="fas fa-check"></i>
+                    <span>Your signing configuration</span>
+                </div>
+                <div class="unchanged-item">
+                    <i class="fas fa-check"></i>
+                    <span>Your SPM dependencies</span>
+                </div>
+                <div class="unchanged-item">
+                    <i class="fas fa-check"></i>
+                    <span>Your test targets</span>
+                </div>
+            </div>
+
+            <p class="unchanged-tagline">FlowDeck reads your project. <strong>It doesn't own it.</strong></p>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="xcodebuild-cta" aria-labelledby="cta-title">
+        <div class="container">
+            <div class="xcodebuild-cta-content">
+                <h2 class="section-title">Need more proof?</h2>
+                <p class="cta-subtitle">Give it a go.</p>
+                
+                <div class="install-command-block install-command-cta">
+                    <div class="install-command">
+                        <code>curl -sSL https://flowdeck.studio/install.sh | sh</code>
+                        <button class="copy-btn" data-copy="curl -sSL https://flowdeck.studio/install.sh | sh" aria-label="Copy install command">
+                            <i class="fas fa-copy"></i>
+                            <span class="copy-tooltip">Copied!</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

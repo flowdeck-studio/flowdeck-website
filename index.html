@@ -186,6 +186,78 @@ body_class: home-page
         </div>
     </section>
 
+    <!-- xcodebuild Comparison Teaser Section -->
+    <section class="xcodebuild-teaser" aria-labelledby="xcodebuild-title">
+        <div class="container">
+            <header class="xcodebuild-teaser-header">
+                <h2 id="xcodebuild-title" class="xcodebuild-teaser-title">The Workflow <code>xcodebuild</code> Never Gave You</h2>
+            </header>
+
+            <div class="xcodebuild-teaser-content">
+                <p class="xcodebuild-teaser-lead">
+                    <code>xcodebuild</code> builds. That's it. You still need a dozen more tools and shell scripts to glue things together. Then figure out how to parse the output.
+                </p>
+                <p class="xcodebuild-teaser-sub">
+                    FlowDeck is the complete workflow: build, run, test, logs, devices.<br>
+                    <strong>8 commands</strong>, structured output, done.
+                </p>
+            </div>
+
+            <div class="xcodebuild-comparison-grid">
+                <div class="xcodebuild-comparison-card xcodebuild-card-old">
+                    <div class="comparison-card-header">
+                        <code>xcodebuild</code>
+                        <span class="comparison-card-subtitle">Build and run on simulator</span>
+                    </div>
+                    <div class="comparison-card-body">
+                        <div class="comparison-step">
+                            <span class="step-number">1</span>
+                            <code class="step-code">xcrun simctl list devices</code>
+                        </div>
+                        <div class="comparison-step">
+                            <span class="step-number">2</span>
+                            <code class="step-code">xcrun simctl boot [UDID]</code>
+                        </div>
+                        <div class="comparison-step">
+                            <span class="step-number">3</span>
+                            <code class="step-code">xcodebuild -scheme App -destination 'platform=iOS Simulator,id=[UDID]'</code>
+                        </div>
+                        <div class="comparison-step">
+                            <span class="step-number">4</span>
+                            <code class="step-code">xcrun simctl install booted [path]</code>
+                        </div>
+                        <div class="comparison-step">
+                            <span class="step-number">5</span>
+                            <code class="step-code">xcrun simctl launch booted [bundle-id]</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-arrow">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+
+                <div class="xcodebuild-comparison-card xcodebuild-card-new">
+                    <div class="comparison-card-header">
+                        <code>FlowDeck</code>
+                    </div>
+                    <div class="comparison-card-body comparison-card-body-single">
+                        <div class="flowdeck-command">
+                            <code>flowdeck run -S "iPhone 16"</code>
+                        </div>
+                        <p class="flowdeck-done">Done.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="xcodebuild-teaser-cta">
+                <a href="{{ site.baseurl }}/cli/xcodebuild/" class="btn btn-secondary btn-large">
+                    See the full comparison <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- AI Agents Section -->
     <section class="ai-love-section">
         <div class="container">
@@ -283,7 +355,7 @@ body_class: home-page
                             <span class="price">$59</span>
                             <span class="period">/year</span>
                         </div>
-                        <p class="pricing-note">Annual license · All updates included</p>
+                        <p class="pricing-note">Personal Use · All updates included</p>
                         <p class="pricing-trial">7-day free trial · No credit card required</p>
                     </div>
 
@@ -297,6 +369,7 @@ body_class: home-page
                     </div>
                 </div>
             </article>
+            <p class="pricing-team-note">For Team licenses &amp; Centralized billing please <a href="mailto:support@flowdeck.studio">Contact us</a>.</p>
         </div>
     </section>
 

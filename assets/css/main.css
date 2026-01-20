@@ -100,14 +100,14 @@ p {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
     color: white;
-    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.25);
+    box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.25);
 }
 
 .btn-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px 0 rgba(59, 130, 246, 0.35);
+    box-shadow: 0 6px 20px 0 rgba(139, 92, 246, 0.35);
 }
 
 .btn-secondary {
@@ -140,16 +140,16 @@ p {
 }
 
 .btn-discord {
-    background: linear-gradient(135deg, #5865F2, #4752C4);
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
     color: white;
-    box-shadow: 0 4px 14px 0 rgba(88, 101, 242, 0.3);
+    box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.3);
     width: 100%;
     justify-content: center;
 }
 
 .btn-discord:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px 0 rgba(88, 101, 242, 0.4);
+    box-shadow: 0 6px 20px 0 rgba(139, 92, 246, 0.4);
 }
 
 /* ================================================================ */
@@ -315,7 +315,7 @@ p {
 /* ================================================================ */
 
 .hero {
-    padding: calc(80px + 2rem) 0 4rem;
+    padding: calc(80px + 4rem) 0 4rem;
     background: transparent;
     position: relative;
     overflow: visible;
@@ -1539,7 +1539,7 @@ p {
 .signup-modal-title {
     font-size: 2rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #3b82f6, #10b981);
+    background: linear-gradient(135deg, #c084fc, #a78bfa);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1628,7 +1628,7 @@ p {
 }
 
 .signup-form-submit {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -1642,7 +1642,7 @@ p {
 
 .signup-form-submit:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
 }
 
 .signup-form-submit:disabled {
@@ -4807,7 +4807,7 @@ p {
 
 @media (min-width: 969px) {
     .hero-cli .terminal-window {
-        height: 480px;
+        height: 440px;
     }
 }
 
@@ -8729,9 +8729,10 @@ p {
 
 /* Extension Hero Image */
 .extension-hero-img {
-    width: 110%;
-    max-width: 110%;
-    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 8px;
+    object-fit: contain;
 }
 
 /* Works With - Hero version */
@@ -8978,13 +8979,13 @@ p {
    EXTENSION PAGE - BLUE THEME
    ============================================ */
 
-/* Page gradient - blue instead of purple (same size as CLI) */
+/* Page gradient - blue (matching promo section) */
 .extension-page::before {
-    height: 1400px;
+    height: 1300px;
     background: 
-        radial-gradient(ellipse 120% 80% at 50% 0%, rgba(56, 189, 248, 0.14), transparent 70%),
-        radial-gradient(ellipse 100% 70% at 40% 5%, rgba(59, 130, 246, 0.15), transparent 60%),
-        radial-gradient(ellipse 90% 60% at 70% 10%, rgba(96, 165, 250, 0.12), transparent 55%) !important;
+        radial-gradient(ellipse 100% 60% at 50% 0%, rgba(59, 130, 246, 0.18), transparent 60%),
+        radial-gradient(ellipse 80% 50% at 35% 5%, rgba(96, 165, 250, 0.12), transparent 50%),
+        radial-gradient(ellipse 70% 40% at 65% 8%, rgba(59, 130, 246, 0.1), transparent 45%) !important;
 }
 
 /* Gradient text - blue */
@@ -9019,12 +9020,18 @@ p {
 
 /* Bento card top lights - remove for regular cards, blue for hero */
 .extension-page .cli-bento-card::before {
-    display: none;
+    display: none !important;
+}
+
+/* Force blue accent for ALL hero cards on extension page */
+.extension-page .cli-bento-hero {
+    --card-accent: rgba(59, 130, 246, 0.12);
+    --card-accent-solid: #60a5fa;
 }
 
 .extension-page .cli-bento-hero::before {
-    display: block;
-    background: linear-gradient(90deg, transparent 0%, rgba(56, 189, 248, 0.5) 30%, rgba(59, 130, 246, 0.5) 70%, transparent 100%) !important;
+    display: block !important;
+    background: linear-gradient(90deg, transparent 0%, #38bdf8 30%, #3b82f6 70%, transparent 100%) !important;
 }
 
 /* Hero cards only - blue tinted background and border */
@@ -9092,5 +9099,35 @@ p {
 
 .extension-page .btn-nav-support:hover {
     background: linear-gradient(135deg, #3b82f6, #60a5fa);
+}
+
+/* Pricing trial text - blue */
+.extension-page .pricing-trial {
+    color: #60a5fa;
+}
+
+/* Modal - blue on extension page */
+.extension-page .signup-modal-title {
+    background: linear-gradient(135deg, #3b82f6, #10b981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.extension-page .signup-form-submit {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.extension-page .signup-form-submit:hover:not(:disabled) {
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* Discord button - blue on extension page */
+.extension-page .btn-discord {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.3);
+}
+
+.extension-page .btn-discord:hover {
+    box-shadow: 0 6px 20px 0 rgba(59, 130, 246, 0.4);
 }
 

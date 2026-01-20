@@ -17,6 +17,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+const ANALYTICS_CONFIG = {
+    installCommand: 'curl -sSL https://flowdeck.studio/install.sh | sh',
+    checkoutHost: 'store.flowdeck.studio',
+    checkoutPath: '/buy/',
+    priceYearly: 59,
+    currency: 'USD'
+};
+
+function trackEvent(eventName, params) {
+    if (typeof window.gtag !== 'function') {
+        return;
+    }
+    window.gtag('event', eventName, params || {});
+}
+
+function withPageContext(extraParams) {
+    return Object.assign({
+        page_path: window.location.pathname,
+        page_title: document.title
+    }, extraParams || {});
+}
+
 // Navbar background on scroll
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
@@ -690,6 +712,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         icon.classList.add('fa-copy');
                     }
                 }, 2000);
+
+                if (textToCopy === ANALYTICS_CONFIG.installCommand) {
+                    trackEvent('start_trial', withPageContext({ method: 'copy_command' }));
+                }
             } catch (err) {
                 console.error('Failed to copy:', err);
                 // Fallback for older browsers
@@ -703,6 +729,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.execCommand('copy');
                     tooltip.classList.add('show');
                     setTimeout(() => tooltip.classList.remove('show'), 2000);
+                    if (textToCopy === ANALYTICS_CONFIG.installCommand) {
+                        trackEvent('start_trial', withPageContext({ method: 'copy_command_fallback' }));
+                    }
                 } catch (e) {
                     console.error('Fallback copy failed:', e);
                 }
@@ -724,6 +753,7 @@ function openInstallModal() {
     if (installModal) {
         installModal.classList.add('active');
         document.body.style.overflow = 'hidden';
+        trackEvent('trial_intent', withPageContext({ method: 'install_modal' }));
     }
 }
 
@@ -783,6 +813,22 @@ window.addEventListener('hashchange', () => {
         openInstallModal();
         // Remove the hash from URL without causing page jump
         history.replaceState(null, null, window.location.pathname + window.location.search);
+    }
+});
+
+// Purchase link tracking
+document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) {
+        return;
+    }
+    const href = link.getAttribute('href') || '';
+    if (href.includes(ANALYTICS_CONFIG.checkoutHost) && href.includes(ANALYTICS_CONFIG.checkoutPath)) {
+        trackEvent('begin_checkout', withPageContext({
+            value: ANALYTICS_CONFIG.priceYearly,
+            currency: ANALYTICS_CONFIG.currency,
+            link_text: link.textContent.trim()
+        }));
     }
 });
 
@@ -950,4 +996,3 @@ document.addEventListener('DOMContentLoaded', () => {
         video.addEventListener('loadedmetadata', setPreviewFrame, { once: true });
     }
 });
-

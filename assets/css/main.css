@@ -4150,6 +4150,12 @@ p {
     width: 100%;
 }
 
+.hero-trial-note {
+    color: #a1a1aa;
+    font-size: 0.95rem;
+    margin-top: 0.75rem;
+}
+
 /* Hero Trust Text */
 .hero-trust {
     color: #71717a;

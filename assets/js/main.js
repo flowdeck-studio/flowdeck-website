@@ -327,12 +327,11 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Handle form submission to MailerLite via hidden iframe
+// Handle form submission to Lemon Squeezy via hidden iframe
 if (signupForm) {
-    const mlIframe = document.getElementById('ml-submit-iframe');
+    const lsIframe = document.getElementById('ls-submit-iframe');
 
-    signupForm.addEventListener('submit', (e) => {
-        // Don't prevent default - let the form submit to the iframe naturally
+    signupForm.addEventListener('submit', () => {
         const submitButton = signupForm.querySelector('.signup-form-submit');
         const originalButtonText = submitButton.textContent;
 
@@ -344,9 +343,7 @@ if (signupForm) {
         const existingMessages = signupForm.parentElement.querySelectorAll('.signup-success-message, .signup-error-message');
         existingMessages.forEach(msg => msg.remove());
 
-        // Listen for iframe load (indicates form submission completed)
         const handleIframeLoad = () => {
-            // Small delay to ensure MailerLite processed the request
             setTimeout(() => {
                 // Success - Hide form and show success message
                 signupForm.style.display = 'none';
@@ -355,8 +352,8 @@ if (signupForm) {
                 successMessage.className = 'signup-success-message';
                 successMessage.innerHTML = `
                     <div style="text-align: center; padding: 2rem 0;">
-                        <h3 style="color: #10b981; font-size: 1.5rem; margin-bottom: 0.5rem;">Welcome to FlowDeck!</h3>
-                        <p style="color: #a1a1aa;">Check your email for confirmation.</p>
+                        <h3 style="color: #10b981; font-size: 1.5rem; margin-bottom: 0.5rem;">Thank You</h3>
+                        <p style="color: #a1a1aa;">You're on the list!</p>
                     </div>
                 `;
                 signupForm.parentElement.insertBefore(successMessage, signupForm);
@@ -373,12 +370,13 @@ if (signupForm) {
                     signupForm.reset();
                 }, 4000);
 
-                // Remove this listener
-                mlIframe.removeEventListener('load', handleIframeLoad);
-            }, 500);
+                lsIframe.removeEventListener('load', handleIframeLoad);
+            }, 300);
         };
 
-        mlIframe.addEventListener('load', handleIframeLoad);
+        if (lsIframe) {
+            lsIframe.addEventListener('load', handleIframeLoad);
+        }
 
         // Fallback timeout in case iframe load doesn't fire
         setTimeout(() => {

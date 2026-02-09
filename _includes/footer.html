@@ -21,23 +21,20 @@
         </div>
 
         <div class="signup-modal-content">
-            <form id="signupForm" class="signup-form" action="https://assets.mailerlite.com/jsonp/1824513/forms/166871684685498190/subscribe" method="post" target="ml-submit-iframe">
+            <form id="signupForm" class="signup-form" action="https://flowdeck.lemonsqueezy.com/email-subscribe/external" method="post" target="ls-submit-iframe">
                 <div class="form-field">
                     <label for="signup-name" class="form-label">First Name</label>
-                    <input type="text" id="signup-name" name="fields[name]" class="form-input" placeholder="John" required>
+                    <input type="text" id="signup-name" name="name" class="form-input" placeholder="John" required>
                 </div>
 
                 <div class="form-field">
                     <label for="signup-email" class="form-label">Email</label>
-                    <input type="email" id="signup-email" name="fields[email]" class="form-input" placeholder="john@example.com" required>
+                    <input type="email" id="signup-email" name="email" class="form-input" placeholder="john@example.com" required>
                 </div>
-
-                <input type="hidden" name="ml-submit" value="1">
-                <input type="hidden" name="anticsrf" value="true">
 
                 <button type="submit" class="signup-form-submit">Subscribe</button>
             </form>
-            <iframe name="ml-submit-iframe" id="ml-submit-iframe" style="display:none;"></iframe>
+            <iframe name="ls-submit-iframe" id="ls-submit-iframe" style="display:none;"></iframe>
 
             <footer class="signup-modal-footer">
                 <p class="signup-modal-note">No spam, unsubscribe anytime. <a href="{{ site.baseurl }}/privacy-policy/" class="privacy-link">Privacy Policy</a>.</p>
@@ -52,7 +49,7 @@
         <button class="install-modal-close" aria-label="Close modal">&times;</button>
         <header class="install-modal-header">
             <h2 id="install-modal-title" class="install-modal-title">Install FlowDeck CLI</h2>
-            <p class="install-modal-subtitle">7-day free trial · No credit card · $59/year after</p>
+            <p class="install-modal-subtitle">7-day free trial · $59/year after</p>
         </header>
 
         <div class="install-modal-content">

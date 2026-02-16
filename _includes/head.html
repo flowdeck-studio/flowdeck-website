@@ -60,22 +60,55 @@
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6T1XG8PG61"></script>
+    <!-- Bot/Spam Traffic Filter -->
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-6T1XG8PG61');
+        // Block somi.ai bot spam and other fake referrer traffic
+        // See: lemon-squeezy-webhook-setup-2026-02-16.md
+        (function() {
+            var dominated = [
+                'somi.ai'
+            ];
+            var ref = document.referrer || '';
+            var host = window.location.hostname || '';
+            var blocked = false;
+            for (var i = 0; i < dominated.length; i++) {
+                if (ref.indexOf(dominated[i]) !== -1) { blocked = true; break; }
+            }
+            // Only allow tracking on the real domain
+            if (host !== 'flowdeck.studio' && host !== 'www.flowdeck.studio' && host !== 'localhost' && host !== '127.0.0.1') {
+                blocked = true;
+            }
+            window.__fdBlockAnalytics = blocked;
+        })();
     </script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16662201918"></script>
+    <!-- Google Analytics -->
+    <script>
+        if (!window.__fdBlockAnalytics) {
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-6T1XG8PG61';
+            document.head.appendChild(s);
+        }
+    </script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'AW-16662201918');
+        if (!window.__fdBlockAnalytics) {
+            gtag('js', new Date());
+            gtag('config', 'G-6T1XG8PG61');
+        }
+    </script>
+
+    <!-- Google tag (gtag.js) - Ads -->
+    <script>
+        if (!window.__fdBlockAnalytics) {
+            var s2 = document.createElement('script');
+            s2.async = true;
+            s2.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16662201918';
+            document.head.appendChild(s2);
+            gtag('config', 'AW-16662201918');
+        }
     </script>
 
     <!-- FlowDeck Custom Event Tracking -->

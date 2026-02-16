@@ -78,6 +78,67 @@
         gtag('config', 'AW-16662201918');
     </script>
 
+    <!-- FlowDeck Custom Event Tracking -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('click', function(e) {
+            var link = e.target.closest('a[href]');
+            if (!link) return;
+            var href = link.getAttribute('href');
+            if (!href) return;
+
+            // Discord community clicks
+            if (href.indexOf('discord.gg') !== -1 || href.indexOf('discord.com') !== -1) {
+                gtag('event', 'click_discord', {
+                    event_category: 'outbound',
+                    event_label: href,
+                    link_url: href
+                });
+            }
+            // Documentation clicks
+            if (href.indexOf('docs.flowdeck.studio') !== -1) {
+                gtag('event', 'click_docs', {
+                    event_category: 'outbound',
+                    event_label: href,
+                    link_url: href
+                });
+            }
+            // VS Code / Cursor extension install clicks
+            if (href.indexOf('cursor:extension') !== -1 || href.indexOf('vscode:extension') !== -1) {
+                gtag('event', 'click_install_extension', {
+                    event_category: 'conversion',
+                    event_label: href,
+                    link_url: href
+                });
+            }
+            // Lemon Squeezy checkout (trial/purchase)
+            if (href.indexOf('store.flowdeck.studio') !== -1) {
+                gtag('event', 'click_checkout', {
+                    event_category: 'conversion',
+                    event_label: href,
+                    link_url: href
+                });
+            }
+            // Twitter/X profile clicks
+            if (href.indexOf('x.com/flowdeckstudio') !== -1 || href.indexOf('twitter.com/flowdeckstudio') !== -1 || href.indexOf('x.com/afterxleep') !== -1) {
+                gtag('event', 'click_twitter', {
+                    event_category: 'outbound',
+                    event_label: href,
+                    link_url: href
+                });
+            }
+            // GitHub clicks
+            if (href.indexOf('github.com/flowdeck') !== -1) {
+                gtag('event', 'click_github', {
+                    event_category: 'outbound',
+                    event_label: href,
+                    link_url: href
+                });
+            }
+        });
+    });
+    </script>
+
     <!-- Structured Data (JSON-LD) -->
     {% include structured-data.html %}
 </head>
